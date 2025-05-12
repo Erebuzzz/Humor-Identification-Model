@@ -11,7 +11,11 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from sentence_transformers import SentenceTransformer
 from sklearn.model_selection import train_test_split, StratifiedKFold
-from sklearn.metrics import classification_report, roc_auc_score, accuracy_score, precision_recall_curve, f1_score, confusion_matrix, roc_curve
+from sklearn.metrics import (
+    classification_report, roc_auc_score, accuracy_score, 
+    precision_recall_curve, f1_score, confusion_matrix, 
+    roc_curve, recall_score, precision_score, balanced_accuracy_score
+)
 from imblearn.over_sampling import SMOTE
 from tqdm import tqdm
 import matplotlib.pyplot as plt
