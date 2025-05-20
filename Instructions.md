@@ -1,11 +1,3 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" class="logo" width="120"/>
-
-# Create a markdown file for the above
-
-Here is a **markdown file** (`instructions.md`) listing all files you need to download and where to place them for your humor identification project. This will ensure your code runs fully offline and reproducibly.
-
----
-
 # Instructions for Local File Setup
 
 To run this humor identification project **completely offline and reproducibly**, download and store the following files in your project directory as described below.
@@ -128,11 +120,8 @@ The script will create `zagreb_indices_results.txt` in your project folder after
 - [GloVe Download](https://nlp.stanford.edu/projects/glove/)
 - [BERT Download Instructions](https://huggingface.co/bert-base-uncased)
 - [Yelp Open Dataset](https://www.yelp.com/dataset)
-- [How to download Hugging Face models locally (StackOverflow)]
 
 ---
-
-*With these files in place, your project will run fully offline and reproducibly!*
 
 <div style="text-align: center">⁂</div>
 
