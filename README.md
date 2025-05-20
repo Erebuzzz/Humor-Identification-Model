@@ -29,7 +29,7 @@ This project implements a machine learning pipeline for automatic humor detectio
 ├── bert-base-uncased/        # Local BERT model files (downloaded)
 ├── yelp_academic_dataset_review.json  # Yelp reviews dataset (downloaded)
 ├── zagreb_indices_results.txt # Exported Zagreb indices (output)
-├── instructions.md           # Local file setup instructions
+├── Instructions.md           # Local file setup instructions
 └── README.md                 # This file
 ```
 
