@@ -1,0 +1,170 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 750px;
+                 background-color: #222222;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+            <div id="config"></div>
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "font": {"color": "white"}, "id": "taken", "label": "taken", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "lot", "label": "lot", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "spin", "label": "spin", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "classes", "label": "classes", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "years", "label": "years", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "compares", "label": "compares", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "body", "label": "body", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "dropping", "label": "dropping", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "check", "label": "check", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "nothing", "label": "nothing", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "cycle", "label": "cycle", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "owner", "label": "owner", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "nice", "label": "nice", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "shout", "label": "shout", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "clean", "label": "clean", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "space", "label": "space", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "amazing", "label": "amazing", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "bikes", "label": "bikes", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "welcoming", "label": "welcoming", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "motivating", "label": "motivating", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "instructors", "label": "instructors", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "every", "label": "every", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "class", "label": "class", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "top", "label": "top", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "butt", "label": "butt", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "notch", "label": "notch", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "work", "label": "work", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "anyone", "label": "anyone", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "struggles", "label": "struggles", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "recommendations", "label": "recommendations", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "russell", "label": "russell", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "fit", "label": "fit", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "workouts", "label": "workouts", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "online", "label": "online", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "scheduling", "label": "scheduling", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "system", "label": "system", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "makes", "label": "makes", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "easy", "label": "easy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "plan", "label": "plan", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "ahead", "label": "ahead", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "need", "label": "need", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "line", "label": "line", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "way", "label": "way", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "advanced", "label": "advanced", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "make", "label": "make", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "write", "label": "write", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "like", "label": "like", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "many", "label": "many", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "gyms", "label": "gyms", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "review", "label": "review", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "without", "label": "without", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "giving", "label": "giving", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "passion", "label": "passion", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "always", "label": "always", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "fitness", "label": "fitness", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "cycling", "label": "cycling", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "evident", "label": "evident", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "desire", "label": "desire", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "clients", "label": "clients", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "succeed", "label": "succeed", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "wears", "label": "wears", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "encouragement", "label": "encouragement", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "open", "label": "open", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "ideas", "label": "ideas", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "smile", "label": "smile", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "face", "label": "face", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "even", "label": "even", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "kicking", "label": "kicking", "shape": "dot", "size": 10}]);
+                  edges = new vis.DataSet([{"from": "taken", "to": "lot", "width": 1}, {"from": "lot", "to": "spin", "width": 1}, {"from": "spin", "to": "classes", "width": 1}, {"from": "classes", "to": "years", "width": 1}, {"from": "classes", "to": "compares", "width": 1}, {"from": "classes", "to": "body", "width": 1}, {"from": "classes", "to": "dropping", "width": 1}, {"from": "classes", "to": "check", "width": 1}, {"from": "years", "to": "nothing", "width": 1}, {"from": "nothing", "to": "compares", "width": 1}, {"from": "body", "to": "cycle", "width": 1}, {"from": "body", "to": "owner", "width": 1}, {"from": "cycle", "to": "nice", "width": 1}, {"from": "cycle", "to": "shout", "width": 1}, {"from": "nice", "to": "clean", "width": 1}, {"from": "clean", "to": "space", "width": 1}, {"from": "space", "to": "amazing", "width": 1}, {"from": "amazing", "to": "bikes", "width": 1}, {"from": "bikes", "to": "welcoming", "width": 1}, {"from": "welcoming", "to": "motivating", "width": 1}, {"from": "motivating", "to": "instructors", "width": 1}, {"from": "instructors", "to": "every", "width": 1}, {"from": "every", "to": "class", "width": 1}, {"from": "class", "to": "top", "width": 1}, {"from": "class", "to": "butt", "width": 1}, {"from": "top", "to": "notch", "width": 1}, {"from": "notch", "to": "work", "width": 1}, {"from": "work", "to": "anyone", "width": 1}, {"from": "anyone", "to": "struggles", "width": 1}, {"from": "anyone", "to": "recommendations", "width": 1}, {"from": "anyone", "to": "russell", "width": 1}, {"from": "struggles", "to": "fit", "width": 1}, {"from": "fit", "to": "workouts", "width": 1}, {"from": "workouts", "to": "online", "width": 1}, {"from": "online", "to": "scheduling", "width": 1}, {"from": "scheduling", "to": "system", "width": 1}, {"from": "system", "to": "makes", "width": 1}, {"from": "makes", "to": "easy", "width": 1}, {"from": "easy", "to": "plan", "width": 1}, {"from": "plan", "to": "ahead", "width": 1}, {"from": "ahead", "to": "need", "width": 1}, {"from": "need", "to": "line", "width": 1}, {"from": "line", "to": "way", "width": 1}, {"from": "way", "to": "advanced", "width": 1}, {"from": "way", "to": "make", "width": 1}, {"from": "way", "to": "write", "width": 1}, {"from": "advanced", "to": "like", "width": 1}, {"from": "like", "to": "many", "width": 1}, {"from": "many", "to": "gyms", "width": 1}, {"from": "gyms", "to": "make", "width": 1}, {"from": "write", "to": "review", "width": 1}, {"from": "review", "to": "without", "width": 1}, {"from": "without", "to": "giving", "width": 1}, {"from": "giving", "to": "russell", "width": 1}, {"from": "russell", "to": "owner", "width": 1}, {"from": "russell", "to": "shout", "width": 1}, {"from": "russell", "to": "passion", "width": 1}, {"from": "russell", "to": "always", "width": 1}, {"from": "passion", "to": "fitness", "width": 1}, {"from": "fitness", "to": "cycling", "width": 1}, {"from": "cycling", "to": "evident", "width": 1}, {"from": "evident", "to": "desire", "width": 1}, {"from": "desire", "to": "clients", "width": 1}, {"from": "clients", "to": "succeed", "width": 1}, {"from": "succeed", "to": "always", "width": 1}, {"from": "always", "to": "dropping", "width": 1}, {"from": "always", "to": "wears", "width": 1}, {"from": "check", "to": "encouragement", "width": 1}, {"from": "encouragement", "to": "open", "width": 1}, {"from": "open", "to": "ideas", "width": 1}, {"from": "ideas", "to": "recommendations", "width": 1}, {"from": "wears", "to": "smile", "width": 1}, {"from": "smile", "to": "face", "width": 1}, {"from": "face", "to": "even", "width": 1}, {"from": "even", "to": "kicking", "width": 1}, {"from": "kicking", "to": "butt", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true,
+        "filter": [
+            "physics"
+        ]
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

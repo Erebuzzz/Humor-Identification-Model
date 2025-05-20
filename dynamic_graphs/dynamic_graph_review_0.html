@@ -1,0 +1,170 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 750px;
+                 background-color: #222222;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+            <div id="config"></div>
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "font": {"color": "white"}, "id": "decide", "label": "decide", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "eat", "label": "eat", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "aware", "label": "aware", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "going", "label": "going", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "take", "label": "take", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "hours", "label": "hours", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "beginning", "label": "beginning", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "end", "label": "end", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "tried", "label": "tried", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "multiple", "label": "multiple", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "times", "label": "times", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "want", "label": "want", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "like", "label": "like", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "locations", "label": "locations", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "nj", "label": "nj", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "never", "label": "never", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "bad", "label": "bad", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "experience", "label": "experience", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "food", "label": "food", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "good", "label": "good", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "takes", "label": "takes", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "long", "label": "long", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "time", "label": "time", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "way", "label": "way", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "waiting", "label": "waiting", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "come", "label": "come", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "waitstaff", "label": "waitstaff", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "young", "label": "young", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "usually", "label": "usually", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "pleasant", "label": "pleasant", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "opt", "label": "opt", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "many", "label": "many", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "experiences", "label": "experiences", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "spent", "label": "spent", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "another", "label": "another", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "diner", "label": "diner", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "restaurant", "label": "restaurant", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "weekends", "label": "weekends", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "order", "label": "order", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "done", "label": "done", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "quicker", "label": "quicker", "shape": "dot", "size": 10}]);
+                  edges = new vis.DataSet([{"from": "decide", "to": "eat", "width": 1}, {"from": "eat", "to": "aware", "width": 1}, {"from": "aware", "to": "going", "width": 1}, {"from": "going", "to": "take", "width": 1}, {"from": "take", "to": "hours", "width": 1}, {"from": "hours", "to": "beginning", "width": 1}, {"from": "beginning", "to": "end", "width": 1}, {"from": "end", "to": "tried", "width": 1}, {"from": "tried", "to": "multiple", "width": 1}, {"from": "multiple", "to": "times", "width": 1}, {"from": "times", "to": "want", "width": 1}, {"from": "want", "to": "like", "width": 1}, {"from": "like", "to": "locations", "width": 1}, {"from": "locations", "to": "nj", "width": 1}, {"from": "nj", "to": "never", "width": 1}, {"from": "never", "to": "bad", "width": 1}, {"from": "bad", "to": "experience", "width": 1}, {"from": "experience", "to": "food", "width": 1}, {"from": "food", "to": "good", "width": 1}, {"from": "good", "to": "takes", "width": 1}, {"from": "takes", "to": "long", "width": 1}, {"from": "long", "to": "time", "width": 1}, {"from": "long", "to": "way", "width": 1}, {"from": "long", "to": "waiting", "width": 1}, {"from": "time", "to": "come", "width": 1}, {"from": "come", "to": "waitstaff", "width": 1}, {"from": "waitstaff", "to": "young", "width": 1}, {"from": "young", "to": "usually", "width": 1}, {"from": "usually", "to": "pleasant", "width": 1}, {"from": "usually", "to": "waiting", "width": 1}, {"from": "usually", "to": "opt", "width": 1}, {"from": "pleasant", "to": "many", "width": 1}, {"from": "many", "to": "experiences", "width": 1}, {"from": "experiences", "to": "spent", "width": 1}, {"from": "spent", "to": "way", "width": 1}, {"from": "opt", "to": "another", "width": 1}, {"from": "another", "to": "diner", "width": 1}, {"from": "diner", "to": "restaurant", "width": 1}, {"from": "restaurant", "to": "weekends", "width": 1}, {"from": "weekends", "to": "order", "width": 1}, {"from": "order", "to": "done", "width": 1}, {"from": "done", "to": "quicker", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true,
+        "filter": [
+            "physics"
+        ]
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

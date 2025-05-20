@@ -1,0 +1,170 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 750px;
+                 background-color: #222222;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+            <div id="config"></div>
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "font": {"color": "white"}, "id": "cute", "label": "cute", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "interior", "label": "interior", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "owner", "label": "owner", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "gave", "label": "gave", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "us", "label": "us", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "tour", "label": "tour", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "upcoming", "label": "upcoming", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "area", "label": "area", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "great", "label": "great", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "beautiful", "label": "beautiful", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "days", "label": "days", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "like", "label": "like", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "today", "label": "today", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "really", "label": "really", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "sandwiches", "label": "sandwiches", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "would", "label": "would", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "see", "label": "see", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "cheese", "label": "cheese", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "curds", "label": "curds", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "much", "label": "much", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "liked", "label": "liked", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "good", "label": "good", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "many", "label": "many", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "onion", "label": "onion", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "filling", "label": "filling", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "come", "label": "come", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "w", "label": "w", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "salad", "label": "salad", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "salads", "label": "salads", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "fun", "label": "fun", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "esp", "label": "esp", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "eating", "label": "eating", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "gruyere", "label": "gruyere", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "tomato", "label": "tomato", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "sandwich", "label": "sandwich", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "needed", "label": "needed", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "something", "label": "something", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "else", "label": "else", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "pepper", "label": "pepper", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "jelly", "label": "jelly", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "maybe", "label": "maybe", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "menu", "label": "menu", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "options", "label": "options", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "added", "label": "added", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "cheeses", "label": "cheeses", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "lots", "label": "lots", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "beer", "label": "beer", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "wine", "label": "wine", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "well", "label": "well", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "limited", "label": "limited", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "cocktails", "label": "cocktails", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "next", "label": "next", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "time", "label": "time", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "try", "label": "try", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "one", "label": "one", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "draft", "label": "draft", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "wines", "label": "wines", "shape": "dot", "size": 10}]);
+                  edges = new vis.DataSet([{"from": "cute", "to": "interior", "width": 1}, {"from": "interior", "to": "owner", "width": 1}, {"from": "owner", "to": "gave", "width": 1}, {"from": "gave", "to": "us", "width": 1}, {"from": "us", "to": "tour", "width": 1}, {"from": "tour", "to": "upcoming", "width": 1}, {"from": "upcoming", "to": "area", "width": 1}, {"from": "area", "to": "great", "width": 1}, {"from": "great", "to": "beautiful", "width": 1}, {"from": "beautiful", "to": "days", "width": 1}, {"from": "days", "to": "like", "width": 1}, {"from": "like", "to": "today", "width": 1}, {"from": "like", "to": "really", "width": 1}, {"from": "like", "to": "sandwiches", "width": 1}, {"from": "like", "to": "would", "width": 1}, {"from": "like", "to": "see", "width": 1}, {"from": "today", "to": "cheese", "width": 1}, {"from": "cheese", "to": "curds", "width": 1}, {"from": "cheese", "to": "much", "width": 1}, {"from": "cheese", "to": "liked", "width": 1}, {"from": "curds", "to": "good", "width": 1}, {"from": "curds", "to": "many", "width": 1}, {"from": "curds", "to": "onion", "width": 1}, {"from": "good", "to": "filling", "width": 1}, {"from": "filling", "to": "really", "width": 1}, {"from": "sandwiches", "to": "come", "width": 1}, {"from": "come", "to": "w", "width": 1}, {"from": "w", "to": "salad", "width": 1}, {"from": "w", "to": "salads", "width": 1}, {"from": "w", "to": "fun", "width": 1}, {"from": "salad", "to": "esp", "width": 1}, {"from": "esp", "to": "eating", "width": 1}, {"from": "eating", "to": "many", "width": 1}, {"from": "onion", "to": "gruyere", "width": 1}, {"from": "gruyere", "to": "tomato", "width": 1}, {"from": "tomato", "to": "sandwich", "width": 1}, {"from": "sandwich", "to": "much", "width": 1}, {"from": "liked", "to": "needed", "width": 1}, {"from": "needed", "to": "something", "width": 1}, {"from": "something", "to": "else", "width": 1}, {"from": "else", "to": "pepper", "width": 1}, {"from": "pepper", "to": "jelly", "width": 1}, {"from": "jelly", "to": "maybe", "width": 1}, {"from": "maybe", "to": "would", "width": 1}, {"from": "see", "to": "menu", "width": 1}, {"from": "menu", "to": "options", "width": 1}, {"from": "options", "to": "added", "width": 1}, {"from": "added", "to": "salads", "width": 1}, {"from": "fun", "to": "cheeses", "width": 1}, {"from": "cheeses", "to": "lots", "width": 1}, {"from": "lots", "to": "beer", "width": 1}, {"from": "beer", "to": "wine", "width": 1}, {"from": "wine", "to": "well", "width": 1}, {"from": "well", "to": "limited", "width": 1}, {"from": "limited", "to": "cocktails", "width": 1}, {"from": "cocktails", "to": "next", "width": 1}, {"from": "next", "to": "time", "width": 1}, {"from": "time", "to": "try", "width": 1}, {"from": "try", "to": "one", "width": 1}, {"from": "one", "to": "draft", "width": 1}, {"from": "draft", "to": "wines", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true,
+        "filter": [
+            "physics"
+        ]
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

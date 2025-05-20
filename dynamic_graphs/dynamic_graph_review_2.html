@@ -1,0 +1,170 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 750px;
+                 background-color: #222222;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+            <div id="config"></div>
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "font": {"color": "white"}, "id": "family", "label": "family", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "diner", "label": "diner", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "buffet", "label": "buffet", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "eclectic", "label": "eclectic", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "assortment", "label": "assortment", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "large", "label": "large", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "chicken", "label": "chicken", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "leg", "label": "leg", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "fried", "label": "fried", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "jalape\u00f1o", "label": "jalape\u00f1o", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "tamale", "label": "tamale", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "two", "label": "two", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "rolled", "label": "rolled", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "grape", "label": "grape", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "leaves", "label": "leaves", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "fresh", "label": "fresh", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "melon", "label": "melon", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "good", "label": "good", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "lots", "label": "lots", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "staff", "label": "staff", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "place", "label": "place", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "mexican", "label": "mexican", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "choices", "label": "choices", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "also", "label": "also", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "menu", "label": "menu", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "breakfast", "label": "breakfast", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "served", "label": "served", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "day", "label": "day", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "long", "label": "long", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "friendly", "label": "friendly", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "attentive", "label": "attentive", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "casual", "label": "casual", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "relaxed", "label": "relaxed", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "meal", "label": "meal", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "expectations", "label": "expectations", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "next", "label": "next", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "clarion", "label": "clarion", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "hotel", "label": "hotel", "shape": "dot", "size": 10}]);
+                  edges = new vis.DataSet([{"from": "family", "to": "diner", "width": 1}, {"from": "diner", "to": "buffet", "width": 1}, {"from": "buffet", "to": "eclectic", "width": 1}, {"from": "eclectic", "to": "assortment", "width": 1}, {"from": "assortment", "to": "large", "width": 1}, {"from": "large", "to": "chicken", "width": 1}, {"from": "chicken", "to": "leg", "width": 1}, {"from": "leg", "to": "fried", "width": 1}, {"from": "fried", "to": "jalape\u00f1o", "width": 1}, {"from": "jalape\u00f1o", "to": "tamale", "width": 1}, {"from": "tamale", "to": "two", "width": 1}, {"from": "two", "to": "rolled", "width": 1}, {"from": "rolled", "to": "grape", "width": 1}, {"from": "grape", "to": "leaves", "width": 1}, {"from": "leaves", "to": "fresh", "width": 1}, {"from": "fresh", "to": "melon", "width": 1}, {"from": "melon", "to": "good", "width": 1}, {"from": "good", "to": "lots", "width": 1}, {"from": "good", "to": "staff", "width": 1}, {"from": "good", "to": "place", "width": 1}, {"from": "lots", "to": "mexican", "width": 1}, {"from": "mexican", "to": "choices", "width": 1}, {"from": "choices", "to": "also", "width": 1}, {"from": "also", "to": "menu", "width": 1}, {"from": "menu", "to": "breakfast", "width": 1}, {"from": "breakfast", "to": "served", "width": 1}, {"from": "served", "to": "day", "width": 1}, {"from": "day", "to": "long", "width": 1}, {"from": "long", "to": "friendly", "width": 1}, {"from": "friendly", "to": "attentive", "width": 1}, {"from": "attentive", "to": "staff", "width": 1}, {"from": "place", "to": "casual", "width": 1}, {"from": "casual", "to": "relaxed", "width": 1}, {"from": "relaxed", "to": "meal", "width": 1}, {"from": "meal", "to": "expectations", "width": 1}, {"from": "expectations", "to": "next", "width": 1}, {"from": "next", "to": "clarion", "width": 1}, {"from": "clarion", "to": "hotel", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true,
+        "filter": [
+            "physics"
+        ]
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
