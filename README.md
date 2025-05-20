@@ -41,8 +41,8 @@ This project implements a machine learning pipeline for automatic humor detectio
 1. **Clone the repository and create a virtual environment:**
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate  # or .venv\Scripts\activate on Windows
+py -3.11 -m venv .venv
+source .venv/bin/activate  # or .venv\Scripts\activate on Windows CMD or .venv\Scripts\Activate.ps1 on Windows Powershell
 ```
 
 2. **Install Python dependencies:**
