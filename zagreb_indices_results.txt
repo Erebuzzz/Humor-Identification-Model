@@ -1,0 +1,130 @@
+Review #1
+Text Preview: Al's is located in ybor one block south of the busy 7th ave. I've passed by it so many times in the 
+First Zagreb Index: 278
+Second Zagreb Index: 296
+First Zagreb Co-Index: 15564
+Second Zagreb Co-Index: 16030
+Generalized Zagreb Index: 556
+Modified Zagreb Index: 15.25
+Third Zagreb Index: 628
+Hyper Zagreb Index: 1220
+Forgotten Index: 628
+============================================================
+
+Review #2
+Text Preview: Asian Shrimp and Abita beer....what's not to like. Service was quick and polite. The bar area is qui
+First Zagreb Index: 46
+Second Zagreb Index: 44
+First Zagreb Co-Index: 484
+Second Zagreb Co-Index: 442
+Generalized Zagreb Index: 92
+Modified Zagreb Index: 3.5
+Third Zagreb Index: 90
+Hyper Zagreb Index: 178
+Forgotten Index: 90
+============================================================
+
+Review #3
+Text Preview: Door opens straight into the dining room with the subzero cold rushing all throughout the restaurant
+First Zagreb Index: 154
+Second Zagreb Index: 174
+First Zagreb Co-Index: 3908
+Second Zagreb Co-Index: 4122
+Generalized Zagreb Index: 308
+Modified Zagreb Index: 7.541666666666666
+Third Zagreb Index: 380
+Hyper Zagreb Index: 728
+Forgotten Index: 380
+============================================================
+
+Review #4
+Text Preview: I really do enjoy this food. You can tell it is made with care and consideration. Overall delicious.
+First Zagreb Index: 30
+Second Zagreb Index: 28
+First Zagreb Co-Index: 196
+Second Zagreb Co-Index: 170
+Generalized Zagreb Index: 60
+Modified Zagreb Index: 2.5
+Third Zagreb Index: 58
+Hyper Zagreb Index: 114
+Forgotten Index: 58
+============================================================
+
+Review #5
+Text Preview: Booking it for New Years Eve, this hotel was chosen mainly for its location, which is amazing.  You 
+First Zagreb Index: 398
+Second Zagreb Index: 472
+First Zagreb Co-Index: 24104
+Second Zagreb Co-Index: 26214
+Generalized Zagreb Index: 796
+Modified Zagreb Index: 17.368055555555557
+Third Zagreb Index: 1108
+Hyper Zagreb Index: 2052
+Forgotten Index: 1108
+============================================================
+
+Review #6
+Text Preview: Amazing meal. Appetizers were delicious. All the steaks including the filet & carne asada were flavo
+First Zagreb Index: 106
+Second Zagreb Index: 112
+First Zagreb Co-Index: 2188
+Second Zagreb Co-Index: 2170
+Generalized Zagreb Index: 212
+Modified Zagreb Index: 6.25
+Third Zagreb Index: 242
+Hyper Zagreb Index: 466
+Forgotten Index: 242
+============================================================
+
+Review #7
+Text Preview: i've only come for ice cream so i can't attest to this establishment's other charms per the 4 and 5 
+First Zagreb Index: 390
+Second Zagreb Index: 488
+First Zagreb Co-Index: 21060
+Second Zagreb Co-Index: 22970
+Generalized Zagreb Index: 780
+Modified Zagreb Index: 16.027777777777775
+Third Zagreb Index: 1206
+Hyper Zagreb Index: 2182
+Forgotten Index: 1206
+============================================================
+
+Review #8
+Text Preview: I love craft beers. I decided to make a stop and try Deviate Brewing. This is the best local craft b
+First Zagreb Index: 154
+Second Zagreb Index: 158
+First Zagreb Co-Index: 5020
+Second Zagreb Co-Index: 5006
+Generalized Zagreb Index: 308
+Modified Zagreb Index: 9.125
+Third Zagreb Index: 338
+Hyper Zagreb Index: 654
+Forgotten Index: 338
+============================================================
+
+Review #9
+Text Preview: Bourbon Street, when you look beneath the surface, can be pretty depressing. It stinks of desperatio
+First Zagreb Index: 128
+Second Zagreb Index: 150
+First Zagreb Co-Index: 2336
+Second Zagreb Co-Index: 2488
+Generalized Zagreb Index: 256
+Modified Zagreb Index: 5.687500000000002
+Third Zagreb Index: 336
+Hyper Zagreb Index: 636
+Forgotten Index: 336
+============================================================
+
+Review #10
+Text Preview: I've never had Korean fried chicken before but had heard it recommended at times. Our server told us
+First Zagreb Index: 530
+Second Zagreb Index: 702
+First Zagreb Co-Index: 30756
+Second Zagreb Co-Index: 35702
+Generalized Zagreb Index: 1060
+Modified Zagreb Index: 17.395833333333336
+Third Zagreb Index: 1778
+Hyper Zagreb Index: 3182
+Forgotten Index: 1778
+============================================================
+
