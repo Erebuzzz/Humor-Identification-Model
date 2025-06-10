@@ -1,3 +1,463 @@
+<<<<<<< HEAD
+ZAGREB INDICES RESULTS - HUMOR IDENTIFICATION WITH UPSILON INDICES
+================================================================================
+
+=== Review 1 ===
+Label: Not Humorous
+Text: Totally worth the wait despite the heat!  I had the Vegan grits with a biscuit on the side. OMG!  So...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 2952.000000
+  Second Zagreb Index (M2): 14168.000000
+  First Zagreb Co-Index: 0.000000
+  Second Zagreb Co-Index: 0.000000
+  Generalized Zagreb: 40258.000000
+  Modified Zagreb: 4.671593
+  Third Zagreb: 40258.000000
+  Hyper Zagreb: 68594.000000
+  Forgotten Index: 40258.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 44.403881
+  Second Zagreb Upsilon (M2_υ): 182.636550
+  Third Zagreb Upsilon (M3_υ): 326.593738
+============================================================
+
+=== Review 2 ===
+Label: Humorous
+Text: Been trying to get an electrician last couple months, no one came through except select electric.   ...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 2508.000000
+  Second Zagreb Index (M2): 11078.000000
+  First Zagreb Co-Index: 0.000000
+  Second Zagreb Co-Index: 0.000000
+  Generalized Zagreb: 24464.000000
+  Modified Zagreb: 4.660119
+  Third Zagreb: 24464.000000
+  Hyper Zagreb: 46620.000000
+  Forgotten Index: 24464.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 44.935817
+  Second Zagreb Upsilon (M2_υ): 180.340811
+  Third Zagreb Upsilon (M3_υ): 320.024618
+============================================================
+
+=== Review 3 ===
+Label: Humorous
+Text: I took my mom here to see Frankenstein last night.  We enjoyed it.  They were great entertainers.  I...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 1404.000000
+  Second Zagreb Index (M2): 5286.000000
+  First Zagreb Co-Index: 6592.000000
+  Second Zagreb Co-Index: 23368.000000
+  Generalized Zagreb: 10712.000000
+  Modified Zagreb: 3.769048
+  Third Zagreb: 10712.000000
+  Hyper Zagreb: 21284.000000
+  Forgotten Index: 10712.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 34.420807
+  Second Zagreb Upsilon (M2_υ): 123.510584
+  Third Zagreb Upsilon (M3_υ): 215.481426
+============================================================
+
+=== Review 4 ===
+Label: Humorous
+Text: My family and friends have been coming here for years. The staff is friendly and informative. Food i...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 1020.000000
+  Second Zagreb Index (M2): 3750.000000
+  First Zagreb Co-Index: 3280.000000
+  Second Zagreb Co-Index: 11080.000000
+  Generalized Zagreb: 7640.000000
+  Modified Zagreb: 3.019048
+  Third Zagreb: 7640.000000
+  Hyper Zagreb: 15140.000000
+  Forgotten Index: 7640.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 26.716655
+  Second Zagreb Upsilon (M2_υ): 92.693974
+  Third Zagreb Upsilon (M3_υ): 161.090300
+============================================================
+
+=== Review 5 ===
+Label: Not Humorous
+Text: I have been a member of Hand and Stone off and on since 2008.  I have visited the Marlton, NJ branch...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 3216.000000
+  Second Zagreb Index (M2): 15524.000000
+  First Zagreb Co-Index: 0.000000
+  Second Zagreb Co-Index: 0.000000
+  Generalized Zagreb: 34924.000000
+  Modified Zagreb: 4.592212
+  Third Zagreb: 34924.000000
+  Hyper Zagreb: 65972.000000
+  Forgotten Index: 34924.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 46.372241
+  Second Zagreb Upsilon (M2_υ): 203.439435
+  Third Zagreb Upsilon (M3_υ): 365.318937
+============================================================
+
+=== Review 6 ===
+Label: Not Humorous
+Text: I placed an order online to create my own pizza.  I get a call from them minutes after I placed my o...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 2002.000000
+  Second Zagreb Index (M2): 8906.000000
+  First Zagreb Co-Index: 7228.000000
+  Second Zagreb Co-Index: 26842.000000
+  Generalized Zagreb: 23676.000000
+  Modified Zagreb: 3.669669
+  Third Zagreb: 23676.000000
+  Hyper Zagreb: 41488.000000
+  Forgotten Index: 23676.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 34.622621
+  Second Zagreb Upsilon (M2_υ): 136.909668
+  Third Zagreb Upsilon (M3_υ): 243.198880
+============================================================
+
+=== Review 7 ===
+Label: Not Humorous
+Text: Excellent service and friendly people. I was so impressed by the nail tech's knowledge about skin ca...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 854.000000
+  Second Zagreb Index (M2): 3111.000000
+  First Zagreb Co-Index: 2068.000000
+  Second Zagreb Co-Index: 6848.000000
+  Generalized Zagreb: 6382.000000
+  Modified Zagreb: 2.580159
+  Third Zagreb: 6382.000000
+  Hyper Zagreb: 12604.000000
+  Forgotten Index: 6382.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 22.737411
+  Second Zagreb Upsilon (M2_υ): 78.276136
+  Third Zagreb Upsilon (M3_υ): 135.908361
+============================================================
+
+=== Review 8 ===
+Label: Humorous
+Text: My group really enjoyed our Culinary History tour with Bob. He was entertaining, honest, and gave us...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 1336.000000
+  Second Zagreb Index (M2): 5362.000000
+  First Zagreb Co-Index: 4216.000000
+  Second Zagreb Co-Index: 14836.000000
+  Generalized Zagreb: 12008.000000
+  Modified Zagreb: 3.212338
+  Third Zagreb: 12008.000000
+  Hyper Zagreb: 22732.000000
+  Forgotten Index: 12008.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 28.777564
+  Second Zagreb Upsilon (M2_υ): 106.079875
+  Third Zagreb Upsilon (M3_υ): 186.529068
+============================================================
+
+=== Review 9 ===
+Label: Humorous
+Text: Staff friendly, plenty of seating. Nice view of the water when sitting outside, which is where we sa...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 2340.000000
+  Second Zagreb Index (M2): 8995.000000
+  First Zagreb Co-Index: 0.000000
+  Second Zagreb Co-Index: 0.000000
+  Generalized Zagreb: 18204.000000
+  Modified Zagreb: 5.690476
+  Third Zagreb: 18204.000000
+  Hyper Zagreb: 36194.000000
+  Forgotten Index: 18204.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 53.763494
+  Second Zagreb Upsilon (M2_υ): 199.515710
+  Third Zagreb Upsilon (M3_υ): 349.411332
+============================================================
+
+=== Review 10 ===
+Label: Not Humorous
+Text: Best Thai food South of Bay to Bay. Everything I've had there is great; no overuse of oil or fish sa...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 1006.000000
+  Second Zagreb Index (M2): 3611.000000
+  First Zagreb Co-Index: 3668.000000
+  Second Zagreb Co-Index: 11936.000000
+  Generalized Zagreb: 7366.000000
+  Modified Zagreb: 3.304762
+  Third Zagreb: 7366.000000
+  Hyper Zagreb: 14588.000000
+  Forgotten Index: 7366.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 28.407281
+  Second Zagreb Upsilon (M2_υ): 94.962817
+  Third Zagreb Upsilon (M3_υ): 164.197720
+============================================================
+
+=== Review 11 ===
+Label: Humorous
+Text: I've never waited for my hot and ready pizza, wings and crazy bread, as long as I did tonight. 31 mi...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 828.000000
+  Second Zagreb Index (M2): 2982.000000
+  First Zagreb Co-Index: 2056.000000
+  Second Zagreb Co-Index: 6664.000000
+  Generalized Zagreb: 6104.000000
+  Modified Zagreb: 2.644048
+  Third Zagreb: 6104.000000
+  Hyper Zagreb: 12068.000000
+  Forgotten Index: 6104.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 22.864579
+  Second Zagreb Upsilon (M2_υ): 77.285711
+  Third Zagreb Upsilon (M3_υ): 133.894737
+============================================================
+
+=== Review 12 ===
+Label: Not Humorous
+Text: Poor service to start off with. Server was abrupt and seemed to be kind of snippy I guess you could ...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 1756.000000
+  Second Zagreb Index (M2): 7014.000000
+  First Zagreb Co-Index: 7566.000000
+  Second Zagreb Co-Index: 28488.000000
+  Generalized Zagreb: 14776.000000
+  Modified Zagreb: 4.048810
+  Third Zagreb: 14776.000000
+  Hyper Zagreb: 28804.000000
+  Forgotten Index: 14776.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 37.846544
+  Second Zagreb Upsilon (M2_υ): 142.390708
+  Third Zagreb Upsilon (M3_υ): 250.289543
+============================================================
+
+=== Review 13 ===
+Label: Not Humorous
+Text: There is not much to say about Joes or "Chinks" if your a long time local. It is a little more expen...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 1532.000000
+  Second Zagreb Index (M2): 6319.000000
+  First Zagreb Co-Index: 5492.000000
+  Second Zagreb Co-Index: 20426.000000
+  Generalized Zagreb: 13584.000000
+  Modified Zagreb: 3.275397
+  Third Zagreb: 13584.000000
+  Hyper Zagreb: 26222.000000
+  Forgotten Index: 13584.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 31.134987
+  Second Zagreb Upsilon (M2_υ): 119.671725
+  Third Zagreb Upsilon (M3_υ): 210.981714
+============================================================
+
+=== Review 14 ===
+Label: Not Humorous
+Text: Amazing food and Amazing service! They know what they are doing! It tastes super authentic and you g...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 1018.000000
+  Second Zagreb Index (M2): 3970.000000
+  First Zagreb Co-Index: 2316.000000
+  Second Zagreb Co-Index: 7426.000000
+  Generalized Zagreb: 9158.000000
+  Modified Zagreb: 2.811905
+  Third Zagreb: 9158.000000
+  Hyper Zagreb: 17098.000000
+  Forgotten Index: 9158.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 23.856448
+  Second Zagreb Upsilon (M2_υ): 83.592731
+  Third Zagreb Upsilon (M3_υ): 146.280468
+============================================================
+
+=== Review 15 ===
+Label: Not Humorous
+Text: We loved the original and used to be regulars. Surprised to find it is still here, in a new location...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 1148.000000
+  Second Zagreb Index (M2): 4262.000000
+  First Zagreb Co-Index: 4256.000000
+  Second Zagreb Co-Index: 14664.000000
+  Generalized Zagreb: 8664.000000
+  Modified Zagreb: 3.269048
+  Third Zagreb: 8664.000000
+  Hyper Zagreb: 17188.000000
+  Forgotten Index: 8664.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 29.284706
+  Second Zagreb Upsilon (M2_υ): 102.966177
+  Third Zagreb Upsilon (M3_υ): 179.220675
+============================================================
+
+=== Review 16 ===
+Label: Not Humorous
+Text: Getting to really like the Trident! Bar server Cody did it All!! She was helpful, efficient and frie...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 1774.000000
+  Second Zagreb Index (M2): 7170.000000
+  First Zagreb Co-Index: 6733.000000
+  Second Zagreb Co-Index: 22695.000000
+  Generalized Zagreb: 20912.000000
+  Modified Zagreb: 4.542288
+  Third Zagreb: 20912.000000
+  Hyper Zagreb: 35252.000000
+  Forgotten Index: 20912.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 38.328941
+  Second Zagreb Upsilon (M2_υ): 133.911474
+  Third Zagreb Upsilon (M3_υ): 234.882323
+============================================================
+
+=== Review 17 ===
+Label: Humorous
+Text: Wouldn't go here again..... I got my belly button pierced...first off it was pierced crooked, second...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 4212.000000
+  Second Zagreb Index (M2): 21744.000000
+  First Zagreb Co-Index: 0.000000
+  Second Zagreb Co-Index: 0.000000
+  Generalized Zagreb: 57282.000000
+  Modified Zagreb: 5.826218
+  Third Zagreb: 57282.000000
+  Hyper Zagreb: 100770.000000
+  Forgotten Index: 57282.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 56.519870
+  Second Zagreb Upsilon (M2_υ): 244.686584
+  Third Zagreb Upsilon (M3_υ): 440.212794
+============================================================
+
+=== Review 18 ===
+Label: Not Humorous
+Text: Their salsa was flavorless. To many green peppers in the fijitas compared to the onion and the chick...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 1480.000000
+  Second Zagreb Index (M2): 5624.000000
+  First Zagreb Co-Index: 7160.000000
+  Second Zagreb Co-Index: 25496.000000
+  Generalized Zagreb: 11536.000000
+  Modified Zagreb: 3.913528
+  Third Zagreb: 11536.000000
+  Hyper Zagreb: 22784.000000
+  Forgotten Index: 11536.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 35.693693
+  Second Zagreb Upsilon (M2_υ): 128.518076
+  Third Zagreb Upsilon (M3_υ): 224.435461
+============================================================
+
+=== Review 19 ===
+Label: Humorous
+Text: In a neat old building with a very nice bar. Easy to access, plenty of parking, right near the heart...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 3746.000000
+  Second Zagreb Index (M2): 15435.000000
+  First Zagreb Co-Index: 0.000000
+  Second Zagreb Co-Index: 0.000000
+  Generalized Zagreb: 32574.000000
+  Modified Zagreb: 7.688690
+  Third Zagreb: 32574.000000
+  Hyper Zagreb: 63444.000000
+  Forgotten Index: 32574.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 75.041799
+  Second Zagreb Upsilon (M2_υ): 293.001226
+  Third Zagreb Upsilon (M3_υ): 516.894022
+============================================================
+
+=== Review 20 ===
+Label: Not Humorous
+Text: beware of this hotel!!!!! they just approved a policy of charging customers $50 a night for incident...
+Traditional Zagreb Indices:
+  First Zagreb Index (M1): 2024.000000
+  Second Zagreb Index (M2): 8836.000000
+  First Zagreb Co-Index: 5898.000000
+  Second Zagreb Co-Index: 16834.000000
+  Generalized Zagreb: 32390.000000
+  Modified Zagreb: 5.488095
+  Third Zagreb: 32390.000000
+  Hyper Zagreb: 50062.000000
+  Forgotten Index: 32390.000000
+Zagreb Upsilon Indices:
+  First Zagreb Upsilon (M1_υ): 38.191088
+  Second Zagreb Upsilon (M2_υ): 127.794051
+  Third Zagreb Upsilon (M3_υ): 226.095420
+============================================================
+
+
+CORRELATION ANALYSIS: Traditional vs Upsilon Zagreb Indices
+============================================================
+First Zagreb Index (M1) <-> First Zagreb Upsilon (M1_υ): 0.9047
+First Zagreb Index (M1) <-> Second Zagreb Upsilon (M2_υ): 0.9556
+First Zagreb Index (M1) <-> Third Zagreb Upsilon (M3_υ): 0.9621
+Second Zagreb Index (M2) <-> First Zagreb Upsilon (M1_υ): 0.8311
+Second Zagreb Index (M2) <-> Second Zagreb Upsilon (M2_υ): 0.9021
+Second Zagreb Index (M2) <-> Third Zagreb Upsilon (M3_υ): 0.9119
+First Zagreb Co-Index <-> First Zagreb Upsilon (M1_υ): -0.4575
+First Zagreb Co-Index <-> Second Zagreb Upsilon (M2_υ): -0.5125
+First Zagreb Co-Index <-> Third Zagreb Upsilon (M3_υ): -0.5160
+
+STATISTICAL SUMMARY
+============================================================
+
+First Zagreb Index (M1):
+  Humorous mean: 2174.2500
+  Non-humorous mean: 1730.1667
+  Ratio (H/NH): 1.2567
+
+Second Zagreb Index (M2):
+  Humorous mean: 9329.0000
+  Non-humorous mean: 7376.2500
+  Ratio (H/NH): 1.2647
+
+First Zagreb Co-Index:
+  Humorous mean: 2018.0000
+  Non-humorous mean: 4365.4167
+  Ratio (H/NH): 0.4623
+
+Second Zagreb Co-Index:
+  Humorous mean: 6993.5000
+  Non-humorous mean: 15137.9167
+  Ratio (H/NH): 0.4620
+
+Generalized Zagreb:
+  Humorous mean: 21123.5000
+  Non-humorous mean: 18635.5000
+  Ratio (H/NH): 1.1335
+
+Modified Zagreb:
+  Humorous mean: 4.5637
+  Non-humorous mean: 3.8473
+  Ratio (H/NH): 1.1862
+
+Third Zagreb:
+  Humorous mean: 21123.5000
+  Non-humorous mean: 18635.5000
+  Ratio (H/NH): 1.1335
+
+Hyper Zagreb:
+  Humorous mean: 39781.5000
+  Non-humorous mean: 33388.0000
+  Ratio (H/NH): 1.1915
+
+Forgotten Index:
+  Humorous mean: 21123.5000
+  Non-humorous mean: 18635.5000
+  Ratio (H/NH): 1.1335
+
+First Zagreb Upsilon (M1_υ):
+  Humorous mean: 42.8801
+  Non-humorous mean: 34.2400
+  Ratio (H/NH): 1.2523
+
+Second Zagreb Upsilon (M2_υ):
+  Humorous mean: 164.6393
+  Non-humorous mean: 127.9225
+  Ratio (H/NH): 1.2870
+
+Third Zagreb Upsilon (M3_υ):
+  Humorous mean: 290.4423
+  Non-humorous mean: 225.6169
+  Ratio (H/NH): 1.2873
+=======
 Review #1
 Text Preview: Al's is located in ybor one block south of the busy 7th ave. I've passed by it so many times in the 
 First Zagreb Index: 278
@@ -128,3 +588,4 @@ Hyper Zagreb Index: 3182
 Forgotten Index: 1778
 ============================================================
 
+>>>>>>> main
