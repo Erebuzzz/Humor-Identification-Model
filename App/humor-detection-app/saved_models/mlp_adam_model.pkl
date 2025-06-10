@@ -1,0 +1,86 @@
+# app.py
+import streamlit as st
+import pickle
+import numpy as np
+import torch
+from transformers import BertTokenizer
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load models and preprocessors
+MODEL_SAVE_DIR = "saved_models_new"
+with open(f"{MODEL_SAVE_DIR}/preprocessors.pkl", 'rb') as f:
+    scaler, variance_selector = pickle.load(f)
+
+# Load models
+models = {}
+model_names = ['svm', 'naive_bayes', 'mlp_adam', 'mlp_rmsprop', 'stacking_ensemble', 'bert']
+for name in model_names:
+    with open(f"{MODEL_SAVE_DIR}/{name}_model.pkl", 'rb') as f:
+        models[name] = pickle.load(f)
+
+# Load BERT tokenizer
+BERT_LOCAL_PATH = "bert-base-uncased"  # Adjust path if necessary
+bert_tokenizer = BertTokenizer.from_pretrained(BERT_LOCAL_PATH)
+
+# Streamlit app layout
+st.title("Humor Identification Model")
+st.markdown("### Test the Humor Identification Model")
+
+# Text input for real-time testing
+user_input = st.text_area("Enter your text here:", height=150)
+
+# Model selection
+selected_model = st.selectbox("Select Model", model_names)
+
+# Button to predict
+if st.button("Predict"):
+    if user_input:
+        # Preprocess input
+        tokens = user_input.split()  # Basic tokenization, can be enhanced
+        features = extract_features_enhanced(tokens, user_input)  # Define this function based on your feature extraction logic
+        features = np.nan_to_num(features).reshape(1, -1)  # Ensure it's 2D for prediction
+        
+        # Scale features
+        features = scaler.transform(features)
+        features = variance_selector.transform(features)
+
+        # Get predictions
+        if selected_model == 'bert':
+            inputs = bert_tokenizer(user_input, return_tensors="pt", truncation=True, padding=True, max_length=192)
+            with torch.no_grad():
+                outputs = models[selected_model](inputs['input_ids'], attention_mask=inputs['attention_mask'])
+                probs = torch.softmax(outputs.logits, dim=1).numpy()[0]
+        else:
+            probs = models[selected_model].predict_proba(features)[0]
+
+        # Display results
+        st.markdown("### Prediction Results")
+        st.write(f"Humorous Probability: {probs[1]:.2f}")
+        st.write(f"Non-Humorous Probability: {probs[0]:.2f}")
+        st.write("Prediction:", "Humorous" if probs[1] > 0.5 else "Not Humorous")
+
+        # Optional: Display visualizations
+        if st.checkbox("Show Zagreb Indices Visualization"):
+            trad_zagreb, upsilon_zagreb, labels_viz = export_zagreb_indices()  # Define this function to collect data
+            create_zagreb_visualizations(trad_zagreb, upsilon_zagreb, labels_viz)  # Define this function to create visualizations
+            st.image("zagreb_viz/zagreb_scatter_1.png")  # Adjust path if necessary
+
+# Function to extract features (placeholder)
+def extract_features_enhanced(tokens, text):
+    # Implement your feature extraction logic here
+    return np.zeros(12 + 8 + 150 * 2 + 100 * 2)  # Adjust dimensions based on your feature extraction
+
+# Function to export Zagreb indices (placeholder)
+def export_zagreb_indices():
+    # Implement your logic to collect Zagreb indices here
+    return np.random.rand(10, 9), np.random.rand(10, 3), np.random.randint(0, 2, 10)  # Dummy data
+
+# Function to create Zagreb visualizations (placeholder)
+def create_zagreb_visualizations(trad_zagreb, upsilon_zagreb, labels_viz):
+    # Implement your visualization logic here
+    pass
+
+# Run the app
+if __name__ == "__main__":
+    st.run()

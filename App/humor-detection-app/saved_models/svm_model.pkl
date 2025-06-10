@@ -1,0 +1,79 @@
+# app.py
+import streamlit as st
+import pickle
+import numpy as np
+import torch
+from transformers import BertTokenizer
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load models and preprocessors
+MODEL_SAVE_DIR = "saved_models_new"
+with open(os.path.join(MODEL_SAVE_DIR, "preprocessors.pkl"), 'rb') as f:
+    scaler, variance_selector = pickle.load(f)
+
+# Load the models
+models = {}
+model_names = ['svm', 'naive_bayes', 'mlp_adam', 'mlp_rmsprop', 'stacking_ensemble', 'bert']
+for name in model_names:
+    with open(os.path.join(MODEL_SAVE_DIR, f"{name}_model.pkl"), 'rb') as f:
+        models[name] = pickle.load(f)
+
+# Load BERT tokenizer
+BERT_LOCAL_PATH = r"C:\Users\kshit\OneDrive\Documents\GitHub\Humor-Identification-Model\bert-base-uncased"
+bert_tokenizer = BertTokenizer.from_pretrained(BERT_LOCAL_PATH)
+
+# Streamlit app layout
+st.title("Humor Identification Model")
+st.markdown("### Test the Humor Identification Model")
+
+# Text input for real-time testing
+user_input = st.text_area("Enter your text here:", height=150)
+
+# Model selection
+selected_model = st.selectbox("Select Model", model_names)
+
+# Button to make prediction
+if st.button("Predict"):
+    if user_input:
+        # Preprocess input
+        tokens = user_input.split()  # Simple tokenization
+        features = extract_features_enhanced(tokens, user_input)  # Assuming this function is defined in your main code
+        features = np.nan_to_num(features)  # Handle NaNs
+
+        # Scale features
+        features_scaled = scaler.transform([features])
+        features_selected = variance_selector.transform(features_scaled)
+
+        # Get predictions
+        if selected_model == 'bert':
+            inputs = bert_tokenizer(user_input, return_tensors="pt", truncation=True, padding=True, max_length=192)
+            with torch.no_grad():
+                outputs = models[selected_model](inputs['input_ids'], attention_mask=inputs['attention_mask'])
+                probs = torch.softmax(outputs.logits, dim=1).numpy()[0]
+        else:
+            probs = models[selected_model].predict_proba(features_selected)[0]
+
+        # Display results
+        humor_prob = probs[1]
+        st.write(f"**Humor Probability:** {humor_prob:.2f}")
+        st.write(f"**Non-Humor Probability:** {1 - humor_prob:.2f}")
+
+        # Visualization of Zagreb indices (if applicable)
+        # Here you can add code to visualize the Zagreb indices based on the input text
+        # For example, you could plot a bar chart or scatter plot
+        # This is a placeholder for your visualization logic
+        st.subheader("Zagreb Indices Visualization")
+        # Example: plt.bar(['Index1', 'Index2'], [value1, value2])
+        # st.pyplot()
+
+# Additional features and information
+st.markdown("### Additional Information")
+st.write("This model uses various machine learning techniques to identify humor in text.")
+st.write("You can test different models and see how they perform on your input.")
+
+# Footer
+st.markdown("---")
+st.write("Developed by [Your Name]")
+
+# Run the app with: streamlit run app.py

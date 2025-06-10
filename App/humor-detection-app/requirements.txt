@@ -1,0 +1,67 @@
+# app.py
+import streamlit as st
+import pickle
+import numpy as np
+import torch
+from transformers import BertTokenizer, BertForSequenceClassification
+
+# Load the model and tokenizer
+MODEL_SAVE_DIR = "saved_models_new"
+BERT_LOCAL_PATH = "C:\\Users\\kshit\\OneDrive\\Documents\\GitHub\\Humor-Identification-Model\\bert-base-uncased"
+
+# Load the BERT model
+@st.cache_resource
+def load_model():
+    model = BertForSequenceClassification.from_pretrained(BERT_LOCAL_PATH, num_labels=2)
+    model.load_state_dict(torch.load(f"{MODEL_SAVE_DIR}/bert_best_model.pth"))
+    model.eval()
+    return model
+
+# Load the tokenizer
+@st.cache_resource
+def load_tokenizer():
+    return BertTokenizer.from_pretrained(BERT_LOCAL_PATH)
+
+# Function to get predictions
+def get_prediction(text, model, tokenizer):
+    inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True, max_length=256)
+    with torch.no_grad():
+        outputs = model(**inputs)
+        probs = torch.softmax(outputs.logits, dim=1)
+    return probs[0][1].item()  # Return the probability of being humorous
+
+# Streamlit app
+st.title("Humor Identification Model")
+st.write("Welcome to the Humor Identification Model! Enter your text below to see if it's humorous.")
+
+# Input text area
+user_input = st.text_area("Enter your text here:", height=150)
+
+# Load model and tokenizer
+model = load_model()
+tokenizer = load_tokenizer()
+
+# Button for prediction
+if st.button("Check Humor"):
+    if user_input:
+        prediction = get_prediction(user_input, model, tokenizer)
+        humor_label = "Humorous" if prediction > 0.5 else "Not Humorous"
+        st.success(f"The model predicts this text is: **{humor_label}** with a probability of {prediction:.2f}")
+    else:
+        st.warning("Please enter some text to analyze.")
+
+# Optional: Display additional features or visualizations
+st.sidebar.header("Additional Features")
+st.sidebar.write("You can explore more about the model's performance and visualizations here.")
+
+# Example of displaying Zagreb indices (if available)
+# This section can be expanded based on your model's features
+# For now, we will just show a placeholder
+if st.sidebar.button("Show Zagreb Indices"):
+    st.sidebar.write("Zagreb indices visualization will be displayed here.")
+    # You can add code to display actual visualizations or data
+
+# Footer
+st.write("---")
+st.write("Developed by [Your Name].")
+st.write("This application uses a BERT-based model for humor identification.")

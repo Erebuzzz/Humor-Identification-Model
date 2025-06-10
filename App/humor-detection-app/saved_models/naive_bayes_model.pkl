@@ -1,0 +1,74 @@
+import streamlit as st
+import pickle
+import numpy as np
+import torch
+from transformers import BertTokenizer, BertForSequenceClassification
+
+# Load the model and tokenizer
+MODEL_SAVE_DIR = "saved_models_new"
+BERT_LOCAL_PATH = r"C:\Users\kshit\OneDrive\Documents\GitHub\Humor-Identification-Model\bert-base-uncased"
+
+# Load the BERT model
+@st.cache(allow_output_mutation=True)
+def load_model():
+    model = BertForSequenceClassification.from_pretrained(BERT_LOCAL_PATH, num_labels=2)
+    model.load_state_dict(torch.load(os.path.join(MODEL_SAVE_DIR, "bert_best_model.pth")))
+    model.eval()
+    return model
+
+# Load the tokenizer
+@st.cache(allow_output_mutation=True)
+def load_tokenizer():
+    return BertTokenizer.from_pretrained(BERT_LOCAL_PATH)
+
+model = load_model()
+tokenizer = load_tokenizer()
+
+# Streamlit app layout
+st.title("Humor Identification Model")
+st.markdown("""
+    This application uses a humor identification model to classify text as humorous or not. 
+    You can input your own text below to see if it is identified as funny or not!
+""")
+
+# Input text area
+user_input = st.text_area("Enter your text here:", height=150)
+
+# Prediction button
+if st.button("Identify Humor"):
+    if user_input:
+        # Tokenize input
+        inputs = tokenizer(user_input, return_tensors="pt", truncation=True, padding=True, max_length=256)
+        
+        # Move inputs to the appropriate device
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        model.to(device)
+        inputs = {key: val.to(device) for key, val in inputs.items()}
+        
+        # Get prediction
+        with torch.no_grad():
+            outputs = model(**inputs)
+            logits = outputs.logits
+            probabilities = torch.softmax(logits, dim=1).cpu().numpy()
+            prediction = np.argmax(probabilities, axis=1)[0]
+            confidence = probabilities[0][prediction]
+        
+        # Display results
+        if prediction == 1:
+            st.success(f"This text is identified as **Humorous** with a confidence of {confidence:.2f}!")
+        else:
+            st.error(f"This text is identified as **Not Humorous** with a confidence of {confidence:.2f}!")
+    else:
+        st.warning("Please enter some text to analyze.")
+
+# Optional: Display additional features or visualizations
+st.markdown("---")
+st.markdown("### Additional Features")
+st.markdown("""
+    You can explore the model's performance and visualizations of the Zagreb indices in the results section.
+    This section can be expanded with more details about the model's training and evaluation metrics.
+""")
+
+# Footer
+st.markdown("---")
+st.markdown("Created with ❤️ by [Your Name]")

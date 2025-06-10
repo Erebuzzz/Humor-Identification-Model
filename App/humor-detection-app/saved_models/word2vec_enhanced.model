@@ -1,0 +1,75 @@
+# app.py
+import streamlit as st
+import pickle
+import numpy as np
+import torch
+from transformers import BertTokenizer, BertForSequenceClassification
+
+# Load models and preprocessors
+MODEL_SAVE_DIR = "saved_models_new"
+with open(f"{MODEL_SAVE_DIR}/preprocessors.pkl", 'rb') as f:
+    scaler, variance_selector = pickle.load(f)
+
+# Load the models
+models = {}
+model_names = ['svm', 'naive_bayes', 'mlp_adam', 'mlp_rmsprop', 'stacking_ensemble']
+
+for name in model_names:
+    with open(f"{MODEL_SAVE_DIR}/{name}_model.pkl", 'rb') as f:
+        models[name] = pickle.load(f)
+
+# Load BERT model
+BERT_LOCAL_PATH = "bert-base-uncased"
+bert_model = BertForSequenceClassification.from_pretrained(BERT_LOCAL_PATH, num_labels=2)
+bert_model.load_state_dict(torch.load(f"{MODEL_SAVE_DIR}/bert_best_model.pth"))
+bert_model.eval()
+
+# Load BERT tokenizer
+bert_tokenizer = BertTokenizer.from_pretrained(BERT_LOCAL_PATH)
+
+# Streamlit app layout
+st.title("Humor Identification Model")
+st.markdown("### Test the Humor Identification Model")
+
+# Model selection
+model_choice = st.selectbox("Select Model", model_names + ['bert'])
+
+# Text input for testing
+user_input = st.text_area("Enter your text here:", height=150)
+
+# Prediction button
+if st.button("Predict"):
+    if user_input:
+        # Preprocess input for selected model
+        if model_choice == 'bert':
+            inputs = bert_tokenizer(user_input, return_tensors="pt", truncation=True, padding=True, max_length=256)
+            with torch.no_grad():
+                outputs = bert_model(**inputs)
+                probs = torch.softmax(outputs.logits, dim=1).numpy()[0]
+                prediction = np.argmax(probs)
+                confidence = probs[prediction]
+        else:
+            # Preprocess for other models (assuming extract_features_enhanced is defined)
+            tokens = preprocess_enhanced(user_input)  # You need to define this function
+            features = extract_features_enhanced(tokens, user_input)  # You need to define this function
+            features = scaler.transform([features])
+            features = variance_selector.transform(features)
+            prediction = models[model_choice].predict(features)[0]
+            confidence = models[model_choice].predict_proba(features)[0][1]
+
+        # Display results
+        result_text = "Humorous" if prediction == 1 else "Not Humorous"
+        st.success(f"Prediction: {result_text} (Confidence: {confidence:.2f})")
+
+        # Optionally, display additional features or visualizations here
+        # For example, you could show the Zagreb indices if computed
+    else:
+        st.warning("Please enter some text to analyze.")
+
+# Optional: Add visualizations of Zagreb indices
+if st.checkbox("Show Zagreb Indices Visualization"):
+    # Load and display your Zagreb indices visualizations here
+    # For example, you could use matplotlib or plotly to show the graphs
+    pass
+
+# Run the app with: streamlit run app.py

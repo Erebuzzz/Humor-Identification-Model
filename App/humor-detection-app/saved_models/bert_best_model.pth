@@ -1,0 +1,75 @@
+# app.py
+import streamlit as st
+import pickle
+import numpy as np
+import torch
+from transformers import BertTokenizer, BertForSequenceClassification
+
+# Load models and preprocessors
+MODEL_SAVE_DIR = "saved_models_new"
+with open(f"{MODEL_SAVE_DIR}/preprocessors.pkl", 'rb') as f:
+    scaler, variance_selector = pickle.load(f)
+
+# Load the models
+models = {}
+model_names = ['svm', 'naive_bayes', 'mlp_adam', 'mlp_rmsprop', 'stacking_ensemble']
+
+for model_name in model_names:
+    with open(f"{MODEL_SAVE_DIR}/{model_name}_model.pkl", 'rb') as f:
+        models[model_name] = pickle.load(f)
+
+# Load BERT model
+BERT_LOCAL_PATH = "path_to_your_bert_model"  # Update this path
+bert_model = BertForSequenceClassification.from_pretrained(BERT_LOCAL_PATH, num_labels=2)
+bert_model.load_state_dict(torch.load(f"{MODEL_SAVE_DIR}/bert_best_model.pth"))
+bert_model.eval()
+tokenizer = BertTokenizer.from_pretrained(BERT_LOCAL_PATH)
+
+# Function to get predictions
+def get_predictions(model, text, model_type='sklearn'):
+    if model_type == 'sklearn':
+        features = extract_features_enhanced(text)  # Implement this function based on your feature extraction
+        features = scaler.transform([features])
+        return model.predict_proba(features)[0][1]  # Probability of humorous
+    elif model_type == 'bert':
+        inputs = tokenizer(text, return_tensors='pt', truncation=True, padding=True, max_length=256)
+        with torch.no_grad():
+            outputs = model(**inputs)
+        return torch.softmax(outputs.logits, dim=1)[0][1].item()  # Probability of humorous
+
+# Streamlit UI
+st.title("Humor Identification Model")
+st.markdown("### Enter your text below to check if it's humorous!")
+
+# Text input
+user_input = st.text_area("Input Text", height=150)
+
+# Model selection
+model_choice = st.selectbox("Select Model", model_names + ['bert'])
+
+if st.button("Predict"):
+    if user_input:
+        if model_choice == 'bert':
+            prob = get_predictions(bert_model, user_input, model_type='bert')
+        else:
+            model = models[model_choice]
+            prob = get_predictions(model, user_input)
+
+        # Display results
+        st.success(f"Probability of being humorous: {prob:.2f}")
+        st.write("This text is likely to be humorous!" if prob > 0.5 else "This text is likely not humorous.")
+    else:
+        st.warning("Please enter some text to analyze.")
+
+# Additional features and visualizations
+st.markdown("### Additional Features")
+# Here you can add more features or visualizations related to your model
+# For example, you can show the Zagreb indices or other metrics
+
+# Example placeholder for visualizations
+st.markdown("### Zagreb Indices Visualization")
+st.image("path_to_your_visualization.png")  # Update this path to your visualization
+
+# Run the app
+if __name__ == "__main__":
+    st.run()
